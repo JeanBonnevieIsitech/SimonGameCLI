@@ -17,34 +17,45 @@ namespace csharpe_individuel
 
             // MAIN
 
-            var random = new Random();
-            var score = 0;
+            Random random = new Random();
+            int score = 0;
 
+            char[] arrowArray = { '→', '←', '↑', '↓' };
+
+            //  Makes the correspondence between the characters of arrows and the name of the key
+            Dictionary<char, ConsoleKey> ArrowDict = new Dictionary<char, ConsoleKey>();
+            ArrowDict.Add('→', ConsoleKey.RightArrow);
+            ArrowDict.Add('←', ConsoleKey.LeftArrow);
+            ArrowDict.Add('↑', ConsoleKey.UpArrow);
+            ArrowDict.Add('↓', ConsoleKey.DownArrow);
+
+
+            //  List of char to memorize for each round
+            List<char> levelCharList = new List<char>();
 
             message("Bienvenue dans le simon console !");
             message("Mémorisez l'ordre des lettres qui vont s'afficher");
 
-            char[] colorChar = { 'W', 'X', 'C', 'V' };
-            List<char> levelCharList = new List<char>();
-            List<char> playerCharList = new List<char>();
-
             while (true)
             {
-                levelCharList.Add(colorChar[random.Next(colorChar.Length)]);
+                levelCharList.Add(arrowArray[random.Next(arrowArray.Length)]);
                 afficherLevel();
                 Console.WriteLine("C'est à vous :");
                 for (int n = 0; n < levelCharList.Count; n++)
                 {
-                    char i = char.ToUpper(Console.ReadKey().KeyChar);
-                    if (i != levelCharList[n])
+                    ConsoleKey key = Console.ReadKey().Key;
+                    if (ArrowDict[levelCharList[n]] != key)
                     {
                         Console.Clear();
                         message($"Perdu !\nTon score est de : {score}");
+
                         Environment.Exit(0);
                     }
+                    Console.Write(" " + levelCharList[n]);
 
                 }
                 score++;
+                Thread.Sleep(500);
 
             }
             // FUNCTIONS
@@ -59,10 +70,10 @@ namespace csharpe_individuel
             void afficherLevel()
             {
                 Console.Clear();
-                for (int i=0; i<levelCharList.Count;i++)
+                for (int i = 0; i < levelCharList.Count; i++)
                 {
                     Console.Write(" " + levelCharList[i]);
-                    if (i!=levelCharList.Count-1)
+                    if (i != levelCharList.Count - 1)
                     {
                         Thread.Sleep(1000);
                     }
@@ -72,6 +83,11 @@ namespace csharpe_individuel
                 Console.Clear();
             }
 
+
+           /* void saveToile()
+            {
+                var json = JsonConvert.SerializeObject            
+            }*/
 
         }
     }
