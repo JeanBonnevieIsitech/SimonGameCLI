@@ -8,8 +8,10 @@ namespace csharpe_individuel
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
+            
+            Console.WriteLine("bonjour le monde");
+            Console.ReadKey();
         }
     }
 }
