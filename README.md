@@ -1,1 +1,1 @@
-# Projet C# Individuel de Jean Bonnevie
+# Jeu de Simon en console C#
