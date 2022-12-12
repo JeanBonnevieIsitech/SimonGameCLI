@@ -16,12 +16,18 @@ namespace csharpe_individuel
         private int delay;
         private string savePath;
         private string saveFilename;
+        private string saveFilenamePath;
 
         private char[] arrowArray;
         private Dictionary<char, ConsoleKey> ArrowDict;
 
         //  List of char to memorize for each round
         private List<char> levelCharList = new List<char>();
+
+        private string errorCreateSave;
+        private string errorWriteSave;
+        private string errorReadSave;
+
 
         // constructeur
         public SimonGame()
@@ -39,9 +45,17 @@ namespace csharpe_individuel
             ArrowDict.Add('↓', ConsoleKey.DownArrow);
 
             // Other variables
-            savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+ "\\SimonGame";
-            //savePath = "data";
-            saveFilename = "save.json"; 
+
+            // folder where save file is located
+            savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\SimonGame";
+            // save file name
+            saveFilename = "save.json";
+            // concatenation of savePath and fileName to get a complete path
+            saveFilenamePath = $"{savePath}\\{saveFilename}";
+            // Error text
+            errorCreateSave = "Erreur lors de la création du fichier de sauvegarde";
+            errorWriteSave = "Erreur lors de l'écriture du fichier de sauvegarde";
+            errorReadSave = "Erreur lors de la lecture du fichier de sauvegarde";
         }
 
         // FUNCTIONS
@@ -70,28 +84,63 @@ namespace csharpe_individuel
 
         void iniSaveFile()
         {
-            Directory.CreateDirectory(@savePath);
-            if (!File.Exists(@savePath))
+            try
             {
-                Dictionary<string, int> scoreDict = new Dictionary<string, int>();
-                scoreDict["highscore"] = -1;
-                File.Create($"{savePath}\\{saveFilename}").Close();
-                File.WriteAllText($"{ savePath}\\{saveFilename}", JsonConvert.SerializeObject(scoreDict));
+                Directory.CreateDirectory(savePath);
+                if (!File.Exists(saveFilenamePath))
+                {
+                    Dictionary<string, int> scoreDict = new Dictionary<string, int>();
+                    scoreDict["highscore"] = -1;
+                    File.Create(saveFilenamePath).Close();
+                    File.WriteAllText(saveFilenamePath, JsonConvert.SerializeObject(scoreDict));
+                }
+            }
+
+            catch (Exception e)
+            {
+                message($"{errorCreateSave} :\n{e.Message}");
+                Environment.Exit(1);
             }
         }
 
         void saveScoreTofile(int score)
         {
-
-            var scoreDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(File.ReadAllText($"{savePath}\\{saveFilename}"));
-            if (score > scoreDict["highscore"])
+            try
             {
-                scoreDict["highscore"] = score;
-                message("Et c'est un nouveau record !");
+                var scoreDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(File.ReadAllText(saveFilenamePath));
+                if (score > scoreDict["highscore"] && score > 0)
+                {
+                    scoreDict["highscore"] = score;
+                    message("Et c'est un nouveau record !");
+
+                }
+
+                File.WriteAllText(saveFilenamePath, JsonConvert.SerializeObject(scoreDict));
 
             }
 
-            File.WriteAllText($"{savePath}\\{saveFilename}", JsonConvert.SerializeObject(scoreDict));
+            catch (Exception e)
+            {
+                message($"{errorWriteSave} :\n{e.Message}");
+                Environment.Exit(1);
+            }
+        }
+
+        int getHighscoreFromFile()
+        {
+            try
+            {
+
+            var scoreDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(File.ReadAllText(saveFilenamePath));
+            return scoreDict["highscore"];
+            }
+
+            catch (Exception e)
+            {
+                message($"{errorReadSave}\n{e.Message}");
+                Environment.Exit(1);
+            }
+            return 0;
         }
 
 
@@ -105,6 +154,11 @@ namespace csharpe_individuel
             message("Bienvenue dans le simon console !");
             // afficher meilleur score si y'a
             message("Mémorisez l'ordre des lettres qui vont s'afficher");
+
+            if (getHighscoreFromFile() > 0)
+            {
+                message($"Le meilleur score acutellement enregistré est de {getHighscoreFromFile()}");
+            }
 
             while (true)
             {
