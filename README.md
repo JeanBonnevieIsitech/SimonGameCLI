@@ -8,7 +8,7 @@ SimonGame est un jeu de Simon en ligne de commande, léger, rapide et efficace
  * Statut discord (Rich Presence)
 
 ## Comment jouer
-Pour pouvoir executer le jeu vous devez générer votre propre version exécutable
+Pour pouvoir exécuter le jeu vous devez générer votre propre version exécutable
 ### Prérequis
  * Microsoft visual Studio
  * gitbash (sur windows)
@@ -21,7 +21,7 @@ git clone https://github.com/JeanBonnevieIsitech/Csharp-Simon
  * Ouvrir le projet dans Visual Studio (double clique sur le fichier csharpe individuel.sln
  * Changer Debug pour Releases
  * Générer => Générer la solution
- * L'executable se trouve dans le dossier du projet csharpe individuel/bin/Release 
+ * L'exécutable trouve dans le dossier du projet csharpe individuel/bin/Release 
 
 *Copyright Jean Bonnevie* 
 *2022*
