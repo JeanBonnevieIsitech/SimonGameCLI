@@ -1,9 +1,9 @@
-﻿// https://stackoverflow.com/questions/6554536/is-it-possible-to-get-set-the-console-font-size
-
+﻿
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
+// https://stackoverflow.com/questions/6554536/is-it-possible-to-get-set-the-console-font-size
 public static class ConsoleHelper
 {
     private const int FixedWidthTrueType = 54;
