@@ -18,10 +18,10 @@ Cloner le dépôt git
 ```
 git clone https://github.com/JeanBonnevieIsitech/Csharp-Simon
 ```
- * Ouvrir le projet dans Visual Studio (double clique sur le fichier csharpe individuel.sln)
+ * Ouvrir le projet dans Visual Studio (double clique sur le fichier SimonGameCLI.sln)
  * Changer Debug pour Releases
  * Générer => Générer la solution
- * L'exécutable trouve dans le dossier du projet csharpe individuel/bin/Release 
+ * L'exécutable trouve dans le dossier du projet SimonGameCLI/bin/Release 
 
 *Copyright Jean Bonnevie* 
 *2022*
