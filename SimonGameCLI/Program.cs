@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using DiscordRPC;
+
 
 namespace SimonGameCLI
 {
@@ -15,6 +7,7 @@ namespace SimonGameCLI
     {
         static void Main(string[] args)
         {
+            // set a bigger front and maximise the console window
             ConsoleHelper.SetCurrentFont("Consolas", 32);
             ConsoleHelper.Maximize();
             Console.Clear();
@@ -44,6 +37,7 @@ namespace SimonGameCLI
                         case 3:
                             Console.WriteLine("à bientôt !");
                             Console.ReadKey();
+                            discord.disconnect();
                             Environment.Exit(0);
                             break;
                     }

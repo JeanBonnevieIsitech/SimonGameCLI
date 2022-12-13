@@ -88,7 +88,7 @@ namespace SimonGameCLI
             Console.Clear();
         }
 
-        void iniSaveFile()
+        void initSaveFile()
         {
             try
             {
@@ -155,15 +155,14 @@ namespace SimonGameCLI
         {
             // MAIN
             Console.Clear();
-            iniSaveFile();
+            initSaveFile();
 
-            
-            discord.gameState.Details = "En train de jouer";
+            discord.gameState.State = "En train de jouer";
             discord.gameState.Timestamps = Timestamps.Now;
+
             if (getHighscoreFromFile() > 0) { discord.gameState.Details = $"\nMeilleur score : {getHighscoreFromFile()}"; }
-            discord.update();
+
             message("Bienvenue dans le simon console !");
-            // afficher meilleur score si y'a
             message("Mémorisez l'ordre des lettres qui vont s'afficher");
 
             if (getHighscoreFromFile() > 0)
@@ -171,6 +170,7 @@ namespace SimonGameCLI
                 message($"Le meilleur score acutellement enregistré est de {getHighscoreFromFile()}");
             }
 
+            discord.update();
             bool running = true;
             // MAIN LOOP
             while (running)
@@ -184,14 +184,15 @@ namespace SimonGameCLI
                     if (ArrowDict[levelCharList[n]] != key)
                     {
                         Console.Clear();
-                        message($"Perdu !\nTon score est de : {score}");
                         saveScoreTofile(score);
                         //Environment.Exit(0);
                         running = false;
                         discord.gameState.Timestamps = null;
+                        discord.gameState.State = "Vient de perdre";
+                        discord.update();
+                        message($"Perdu !\nTon score est de : {score}");
                         discord.gameState.State = "Dans les menus";
                         discord.update();
-                        //discord.disconnect();
                         break;
                     }
 

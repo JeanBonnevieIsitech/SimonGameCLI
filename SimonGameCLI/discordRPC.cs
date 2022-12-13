@@ -13,59 +13,25 @@ namespace SimonGameCLI
         private DiscordRpcClient client;
         private String applicationId;
         public RichPresence gameState;
-        
+
         //  Constructor
-        public discordRPC() 
+        public discordRPC()
         {
             applicationId = "1052148422662172745";
             gameState = new RichPresence()
             {
-
                 Assets = new Assets()
                 {
                     LargeImageKey = "game",
-                    LargeImageText = "SimonGame CLI"
+                    LargeImageText = "SimonGame CLI by Jeanbon#8492"
                 }
             };
 
-            initialize();
-
-        }
-        private void initialize()
-        {
-            /*
-Create a Discord client
-NOTE: 	If you are using Unity3D, you must use the full constructor and define
-         the pipe connection.
-*/
             client = new DiscordRpcClient(applicationId);
-
-            //Set the logger
-            //client.Logger = new ConsoleLogger() { Level = LogLevel.None };
-
-            //Subscribe to events
-            client.OnReady += (sender, e) =>
-            {
-                //Console.WriteLine("Received Ready from user {0}", e.User.Username);
-            };
-
-            client.OnPresenceUpdate += (sender, e) =>
-            {
-                //Console.WriteLine("Received Update! {0}", e.Presence);
-            };
-
             //Connect to the RPC
             client.Initialize();
-
-            //Set the rich presence
-            //Call this as many times as you want and anywhere in your code.
-            client.SetPresence(new RichPresence()
-            {
-                //Details = "Example Project",
-                //State = "csharp example",
-
-            });
         }
+
 
         public void update()
         {
