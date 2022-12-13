@@ -12,7 +12,8 @@ Pour pouvoir executer le jeu vous devez générer votre propre version exécutab
 ### Prérequis
  * Microsoft visual Studio
  * gitbash (sur windows)
- 
+
+### Procédure de compilation
 Cloner le dépôt git
 ```
 git clone https://github.com/JeanBonnevieIsitech/Csharp-Simon
