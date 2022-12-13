@@ -18,7 +18,7 @@ Cloner le dépôt git
 ```
 git clone https://github.com/JeanBonnevieIsitech/Csharp-Simon
 ```
- * Ouvrir le projet dans Visual Studio (double clique sur le fichier csharpe individuel.sln
+ * Ouvrir le projet dans Visual Studio (double clique sur le fichier csharpe individuel.sln)
  * Changer Debug pour Releases
  * Générer => Générer la solution
  * L'exécutable trouve dans le dossier du projet csharpe individuel/bin/Release 
