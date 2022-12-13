@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using DiscordRPC;
 
-namespace csharpe_individuel
+namespace SimonGameCLI
 {
     internal class SimonGame
     {

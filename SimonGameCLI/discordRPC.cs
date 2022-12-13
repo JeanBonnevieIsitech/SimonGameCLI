@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DiscordRPC;
 using DiscordRPC.Logging;
 
-namespace csharpe_individuel
+namespace SimonGameCLI
 {
     internal class discordRPC
     {

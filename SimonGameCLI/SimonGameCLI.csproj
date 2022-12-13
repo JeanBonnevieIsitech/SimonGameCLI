@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3AB19E8D-2877-4C55-AF81-EBD3D9879650}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>csharpe_individuel</RootNamespace>
-    <AssemblyName>csharpe individuel</AssemblyName>
+    <RootNamespace>SimonGameCLI</RootNamespace>
+    <AssemblyName>SimonGame</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
