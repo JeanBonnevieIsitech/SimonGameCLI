@@ -15,6 +15,8 @@ namespace csharpe_individuel
     {
         static void Main(string[] args)
         {
+            ConsoleHelper.SetCurrentFont("Consolas", 32);
+            Console.Clear();
 
             SimonGame game = new SimonGame();
             game.run();

@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using DiscordRPC;
 
 namespace csharpe_individuel
 {
@@ -27,6 +28,9 @@ namespace csharpe_individuel
         private string errorCreateSave;
         private string errorWriteSave;
         private string errorReadSave;
+
+        // discord rich presence
+        discordRPC discord;
 
 
         // constructeur
@@ -151,6 +155,10 @@ namespace csharpe_individuel
 
             iniSaveFile();
 
+            discordRPC discord = new discordRPC();
+            discord.gameState.Details = "En train de jouer";
+            if (getHighscoreFromFile() > 0) { discord.gameState.Details = $"\nMeilleur score : {getHighscoreFromFile()}"; }
+            discord.update();
             message("Bienvenue dans le simon console !");
             // afficher meilleur score si y'a
             message("Mémorisez l'ordre des lettres qui vont s'afficher");
@@ -160,6 +168,7 @@ namespace csharpe_individuel
                 message($"Le meilleur score acutellement enregistré est de {getHighscoreFromFile()}");
             }
 
+            // MAIN LOOP
             while (true)
             {
                 levelCharList.Add(arrowArray[random.Next(arrowArray.Length)]);
@@ -179,6 +188,8 @@ namespace csharpe_individuel
 
                 }
                 score++;
+                discord.gameState.State = $"Score actuel : {this.score}";
+                discord.update();
                 Thread.Sleep(delay / 2);
 
             }
