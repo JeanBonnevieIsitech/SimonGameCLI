@@ -15,6 +15,7 @@ namespace csharpe_individuel
         static void Main(string[] args)
         {
             ConsoleHelper.SetCurrentFont("Consolas", 32);
+            ConsoleHelper.Maximize();
             Console.Clear();
 
             int choice;

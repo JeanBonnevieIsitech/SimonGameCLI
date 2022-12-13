@@ -1,6 +1,7 @@
 ﻿// https://stackoverflow.com/questions/6554536/is-it-possible-to-get-set-the-console-font-size
 
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 public static class ConsoleHelper
@@ -80,5 +81,16 @@ public static class ConsoleHelper
             Console.WriteLine("Get error " + er);
             throw new System.ComponentModel.Win32Exception(er);
         }
+    }
+
+
+
+    [DllImport("user32.dll")]
+    public static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
+
+    public static void Maximize()
+    {
+        Process p = Process.GetCurrentProcess();
+        ShowWindow(p.MainWindowHandle, 3); //SW_MAXIMIZE = 3
     }
 }
