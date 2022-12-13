@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using DiscordRPC;
 
 namespace csharpe_individuel
 {
@@ -18,23 +19,28 @@ namespace csharpe_individuel
             ConsoleHelper.Maximize();
             Console.Clear();
 
-            int choice;
+            discordRPC discord = new discordRPC();
+            discord.gameState.State = "Dans les menus";
+            discord.update();
+
             while (true)
             {
                 Console.Clear() ;
                 Console.WriteLine("bienvenue dans SimonGame CLI\n1 - Lancer SimonGame\n\n2 - Paramètres\n\n3 - Quitter : ");
                 try
                 {
-                    choice = int.Parse(Console.ReadLine());
+                    int choice = int.Parse(Console.ReadLine());
 
                     switch (choice)
                     {
                         case 1:
-                            SimonGame game = new SimonGame();
+                            SimonGame game = new SimonGame(discord);
                             game.run();
                             break;
+
                         case 2:
                             break;
+
                         case 3:
                             Console.WriteLine("à bientôt !");
                             Console.ReadKey();
@@ -48,10 +54,6 @@ namespace csharpe_individuel
                 }
 
             }
-
-
-  
-
         }
     }
 }

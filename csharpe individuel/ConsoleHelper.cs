@@ -84,7 +84,7 @@ public static class ConsoleHelper
     }
 
 
-
+    // https://stackoverflow.com/questions/22053112/maximizing-console-window-c-sharp
     [DllImport("user32.dll")]
     public static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
 

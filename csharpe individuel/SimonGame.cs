@@ -34,7 +34,7 @@ namespace csharpe_individuel
 
 
         // constructeur
-        public SimonGame()
+        public SimonGame(discordRPC discord)
         {
             // Games variable intialisation
             score = 0;
@@ -60,6 +60,8 @@ namespace csharpe_individuel
             errorCreateSave = "Erreur lors de la création du fichier de sauvegarde";
             errorWriteSave = "Erreur lors de l'écriture du fichier de sauvegarde";
             errorReadSave = "Erreur lors de la lecture du fichier de sauvegarde";
+
+            this.discord = discord;
         }
 
         // FUNCTIONS
@@ -155,8 +157,9 @@ namespace csharpe_individuel
             Console.Clear();
             iniSaveFile();
 
-            discordRPC discord = new discordRPC();
+            
             discord.gameState.Details = "En train de jouer";
+            discord.gameState.Timestamps = Timestamps.Now;
             if (getHighscoreFromFile() > 0) { discord.gameState.Details = $"\nMeilleur score : {getHighscoreFromFile()}"; }
             discord.update();
             message("Bienvenue dans le simon console !");
@@ -185,7 +188,10 @@ namespace csharpe_individuel
                         saveScoreTofile(score);
                         //Environment.Exit(0);
                         running = false;
-                        discord.disconnect();
+                        discord.gameState.Timestamps = null;
+                        discord.gameState.State = "Dans les menus";
+                        discord.update();
+                        //discord.disconnect();
                         break;
                     }
 
