@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Security.Cryptography.X509Certificates;
 
 namespace csharpe_individuel
 {
@@ -18,8 +17,39 @@ namespace csharpe_individuel
             ConsoleHelper.SetCurrentFont("Consolas", 32);
             Console.Clear();
 
-            SimonGame game = new SimonGame();
-            game.run();
+            int choice;
+            while (true)
+            {
+                Console.Clear() ;
+                Console.WriteLine("bienvenue dans SimonGame CLI\n1 - Lancer SimonGame\n\n2 - Paramètres\n\n3 - Quitter : ");
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+
+                    switch (choice)
+                    {
+                        case 1:
+                            SimonGame game = new SimonGame();
+                            game.run();
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            Console.WriteLine("à bientôt !");
+                            Console.ReadKey();
+                            Environment.Exit(0);
+                            break;
+                    }
+                }
+                catch
+                {
+                    continue;
+                }
+
+            }
+
+
+  
 
         }
     }

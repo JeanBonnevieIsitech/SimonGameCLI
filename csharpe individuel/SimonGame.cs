@@ -103,7 +103,7 @@ namespace csharpe_individuel
             catch (Exception e)
             {
                 message($"{errorCreateSave} :\n{e.Message}");
-                Environment.Exit(1);
+                //Environment.Exit(1);
             }
         }
 
@@ -126,7 +126,7 @@ namespace csharpe_individuel
             catch (Exception e)
             {
                 message($"{errorWriteSave} :\n{e.Message}");
-                Environment.Exit(1);
+                //Environment.Exit(1);
             }
         }
 
@@ -135,14 +135,14 @@ namespace csharpe_individuel
             try
             {
 
-            var scoreDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(File.ReadAllText(saveFilenamePath));
-            return scoreDict["highscore"];
+                var scoreDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(File.ReadAllText(saveFilenamePath));
+                return scoreDict["highscore"];
             }
 
             catch (Exception e)
             {
                 message($"{errorReadSave}\n{e.Message}");
-                Environment.Exit(1);
+                //sEnvironment.Exit(1);
             }
             return 0;
         }
@@ -152,7 +152,7 @@ namespace csharpe_individuel
         public void run()
         {
             // MAIN
-
+            Console.Clear();
             iniSaveFile();
 
             discordRPC discord = new discordRPC();
@@ -168,8 +168,9 @@ namespace csharpe_individuel
                 message($"Le meilleur score acutellement enregistré est de {getHighscoreFromFile()}");
             }
 
+            bool running = true;
             // MAIN LOOP
-            while (true)
+            while (running)
             {
                 levelCharList.Add(arrowArray[random.Next(arrowArray.Length)]);
                 afficherLevel();
@@ -182,15 +183,23 @@ namespace csharpe_individuel
                         Console.Clear();
                         message($"Perdu !\nTon score est de : {score}");
                         saveScoreTofile(score);
-                        Environment.Exit(0);
+                        //Environment.Exit(0);
+                        running = false;
+                        discord.disconnect();
+                        break;
                     }
-                    Console.Write(" " + levelCharList[n]);
+
+                    if (running) { Console.Write(" " + levelCharList[n]); }
 
                 }
-                score++;
-                discord.gameState.State = $"Score actuel : {this.score}";
-                discord.update();
-                Thread.Sleep(delay / 2);
+
+                if (running)
+                {
+                    score++;
+                    discord.gameState.State = $"Score actuel : {this.score}";
+                    discord.update();
+                    Thread.Sleep(delay / 2);
+                }
 
             }
 

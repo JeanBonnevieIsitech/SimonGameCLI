@@ -71,5 +71,10 @@ NOTE: 	If you are using Unity3D, you must use the full constructor and define
         {
             client.SetPresence(gameState);
         }
+
+        public void disconnect()
+        {
+            client.Dispose();
+        }
     }
 }
