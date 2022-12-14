@@ -16,7 +16,7 @@ Pour pouvoir exécuter le jeu vous devez générer votre propre version exécuta
 ### Procédure de compilation
 Cloner le dépôt git
 ```
-git clone https://github.com/JeanBonnevieIsitech/Csharp-Simon
+git clone https://github.com/JeanBonnevieIsitech/SimonGameCLI
 ```
  * Ouvrir le projet dans Visual Studio (double clique sur le fichier SimonGameCLI.sln)
  * Changer Debug pour Releases
