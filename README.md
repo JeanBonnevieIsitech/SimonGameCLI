@@ -9,6 +9,8 @@ SimonGame est un jeu de Simon en ligne de commande, léger, simpliste et rapide
 
 ## Comment jouer
 Pour pouvoir exécuter le jeu vous devez générer votre propre version exécutable
+
+## Compiler depuis la source
 ### Prérequis
  * Microsoft visual Studio
  * gitbash (sur windows)
@@ -22,6 +24,3 @@ git clone https://github.com/JeanBonnevieIsitech/SimonGameCLI
  * Changer Debug pour Releases
  * Générer => Générer la solution
  * L'exécutable trouve dans le dossier du projet SimonGameCLI/bin/Release 
-
-*Copyright Jean Bonnevie* 
-*2022*
