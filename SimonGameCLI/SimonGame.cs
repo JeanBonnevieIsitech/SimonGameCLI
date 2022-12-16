@@ -170,14 +170,23 @@ namespace SimonGameCLI
             discord.update();
             bool running = true;
             // MAIN LOOP
+
+            ConsoleKey key;
             while (running)
             {
                 levelCharList.Add(arrowArray[random.Next(arrowArray.Length)]);
                 afficherLevel();
+
+                // prevent from cheating by pressing key before readkey
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(false);
+                }
+
                 Console.WriteLine("C'est à vous :");
                 for (int n = 0; n < levelCharList.Count; n++)
                 {
-                    ConsoleKey key = Console.ReadKey().Key;
+                    key = Console.ReadKey().Key;
                     if (ArrowDict[levelCharList[n]] != key)
                     {
                         Console.Clear();
