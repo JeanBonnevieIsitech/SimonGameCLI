@@ -160,7 +160,7 @@ namespace SimonGameCLI
             if (getHighscoreFromFile() > 0) { discord.gameState.Details = $"\nMeilleur score : {getHighscoreFromFile()}"; }
 
             message("Bienvenue dans le simon console !");
-            message("Mémorisez l'ordre des lettres qui vont s'afficher");
+            message("Mémorisez l'ordre des flèches qui vont s'afficher");
 
             if (getHighscoreFromFile() > 0)
             {
@@ -187,7 +187,7 @@ namespace SimonGameCLI
                         discord.gameState.Timestamps = null;
                         discord.gameState.State = "Vient de perdre";
                         discord.update();
-                        message($"Perdu !\nTon score est de : {score}");
+                        message($"Perdu !\nVotre score est de : {score}");
                         discord.gameState.State = "Dans les menus";
                         discord.update();
                         break;
