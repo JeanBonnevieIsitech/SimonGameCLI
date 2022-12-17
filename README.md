@@ -1,6 +1,6 @@
 # Jeu de Simon en C# (console)
 ## Description
-SimonGame est un jeu de Simon en ligne de commande, léger, rapide et efficace
+SimonGame est un jeu de Simon en ligne de commande, léger, simpliste et rapide
 
 ## Fonctionnalités
  * Système de sauvegarde du meilleur score
