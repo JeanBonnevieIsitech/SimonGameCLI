@@ -1,6 +1,6 @@
 # Jeu de Simon en C# (console)
 ## Description
-SimonGame est un jeu de Simon en ligne de commande, léger, simpliste et rapide
+SimonGame est un jeu de Simon en ligne de commande, léger, rapide et efficace
 
 ## Fonctionnalités
  * Système de sauvegarde du meilleur score
@@ -8,9 +8,10 @@ SimonGame est un jeu de Simon en ligne de commande, léger, simpliste et rapide
  * Statut discord (Rich Presence)
 
 ## Comment jouer
-Pour pouvoir exécuter le jeu vous devez générer votre propre version exécutable
+Pour pouvoir lancer le jeu vous pouvez télécharger la dernière [release](https://github.com/JeanBonnevieIsitech/SimonGameCLI/releases) ou compiler le code source vous-même
 
-## Compiler depuis la source
+## Compiler le code source
+
 ### Prérequis
  * Microsoft visual Studio
  * gitbash (sur windows)

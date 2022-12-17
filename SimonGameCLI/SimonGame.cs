@@ -190,13 +190,13 @@ namespace SimonGameCLI
                     if (ArrowDict[levelCharList[n]] != key)
                     {
                         Console.Clear();
-                        saveScoreTofile(score);
                         //Environment.Exit(0);
                         running = false;
                         discord.gameState.Timestamps = null;
                         discord.gameState.State = "Vient de perdre";
                         discord.update();
                         message($"Perdu !\nVotre score est de : {score}");
+                        saveScoreTofile(score);
                         discord.gameState.State = "Dans les menus";
                         discord.update();
                         break;
